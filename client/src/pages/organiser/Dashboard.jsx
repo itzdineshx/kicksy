@@ -393,7 +393,7 @@ const Dashboard = () => {
           <h3 className='text-lg font-semibold mb-4'>⚡ Quick Actions</h3>
           <div className='grid md:grid-cols-3 gap-4'>
             <button 
-              onClick={() => window.location.href = '/organiser/create-event'}
+              onClick={() => window.location.href = '/organiser/events/new'}
               className='p-4 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 rounded-lg transition-colors text-left'
             >
               <div className='text-2xl mb-2'>➕</div>
