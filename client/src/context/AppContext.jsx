@@ -13,6 +13,9 @@ export const AppProvider = ({ children }) => {
   const [bookedEvents, setBookedEvents] = useState(() => {
     try { return JSON.parse(localStorage.getItem('bookedEvents')) || [] } catch { return [] }
   });
+  const [notifications, setNotifications] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('notifications')) || [] } catch { return [] }
+  });
 
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems))
@@ -20,6 +23,9 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('bookedEvents', JSON.stringify(bookedEvents))
   }, [bookedEvents])
+  useEffect(() => {
+    localStorage.setItem('notifications', JSON.stringify(notifications))
+  }, [notifications])
 
   const toggleCart = (item) => {
     const exists = cartItems.some(i => i._id === item._id);
@@ -92,11 +98,43 @@ export const AppProvider = ({ children }) => {
     return { subtotal, tax, fees, total };
   };
 
+  // Notification functions
+  const addNotification = (notification) => {
+    const newNotification = {
+      id: Date.now() + Math.random(),
+      ...notification,
+      timestamp: new Date().toISOString(),
+      read: false
+    };
+    setNotifications(prev => [newNotification, ...prev.slice(0, 49)]); // Keep last 50
+  };
+
+  const markNotificationAsRead = (id) => {
+    setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
+  };
+
+  const markAllAsRead = () => {
+    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+  };
+
+  const removeNotification = (id) => {
+    setNotifications(prev => prev.filter(n => n.id !== id));
+  };
+
+  const clearAllNotifications = () => {
+    setNotifications([]);
+  };
+
+  const getUnreadCount = () => {
+    return notifications.filter(n => !n.read).length;
+  };
+
   return (
     <AppContext.Provider
       value={{
         cartItems,
         bookedEvents,
+        notifications,
         toggleCart,
         updateCartItem,
         removeCartItem,
@@ -104,6 +142,12 @@ export const AppProvider = ({ children }) => {
         addBooking,
         getCartItemUnitPrice,
         cartTotals,
+        addNotification,
+        markNotificationAsRead,
+        markAllAsRead,
+        removeNotification,
+        clearAllNotifications,
+        getUnreadCount,
       }}
     >
       {children}

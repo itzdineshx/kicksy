@@ -4,6 +4,7 @@ import { Search, Menu, X, Ticket, ShoppingCart } from 'lucide-react';
 import { useClerk, UserButton, useUser } from '@clerk/clerk-react';
 import { useApp } from '../hooks/useApp';
 import { newsData, dummyShowsData } from '../data/assests';
+import NotificationBell from './NotificationBell';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -85,6 +86,9 @@ const NavBar = () => {
 
         {/* Right Side Icons */}
         <div className="flex items-center gap-6">
+          {/* Notifications */}
+          <NotificationBell />
+
           {/* Cart */}
           <div className="relative">
             <ShoppingCart className="w-6 h-6 cursor-pointer" onClick={() => setShowCart(true)} />

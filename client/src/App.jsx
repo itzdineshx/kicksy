@@ -15,6 +15,8 @@ import OrderSummary from './pages/OrderSummary';
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 import Privacy from './pages/Privacy';
+import CompetitorAnalysis from './pages/CompetitorAnalysis';
+import AdminCompetitorAnalysis from './pages/admin/CompetitorAnalysis';
 
 // Components
 import Footer from './components/Footer'
@@ -58,6 +60,7 @@ const App = () => {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route path="/competitor-analysis" element={<CompetitorAnalysis />} />
         {/* Admin */}
         <Route path='/admin' element={<PricingDashboard />} />
         <Route path='/admin/pricing' element={<PricingDashboard />} />
@@ -66,6 +69,7 @@ const App = () => {
         <Route path='/admin/segments' element={<CustomerSegments />} />
         <Route path='/admin/analytics' element={<RevenueAnalytics />} />
         <Route path='/admin/rules' element={<PricingRules />} />
+        <Route path='/admin/competitor-analysis' element={<AdminCompetitorAnalysis />} />
         {/* Organiser */}
         <Route path='/organiser' element={<OrganiserDashboard />} />
         <Route path='/organiser/events' element={<OrganiserEvents />} />

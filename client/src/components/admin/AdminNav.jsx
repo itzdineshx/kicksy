@@ -22,6 +22,7 @@ const AdminNav = () => {
           {item('/admin/segments', 'Segments')}
           {item('/admin/analytics', 'Analytics')}
           {item('/admin/rules', 'Rules')}
+          {item('/admin/competitor-analysis', 'Competitor Analysis')}
         </nav>
       </div>
     </div>
